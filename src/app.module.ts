@@ -4,6 +4,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user/entities/user.entity';
 
 @Module({
   imports: [
@@ -11,6 +13,16 @@ import { UserModule } from './user/user.module';
       driver: ApolloDriver,
       path: '/graphql',
       autoSchemaFile: './user/schema.gql',
+    }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'password',
+      database: 'mydb',
+      entities: [User], // add any other entities you have
+      synchronize: true,
     }),
     UserModule,
   ],

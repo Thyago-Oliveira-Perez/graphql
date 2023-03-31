@@ -3,5 +3,5 @@
 # ------------------------------------------------------
 
 type Query {
-  getWorld: String!
+  getUser: String!
 }
