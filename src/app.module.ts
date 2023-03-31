@@ -19,7 +19,7 @@ import { User } from './user/entities/user.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'password',
+      password: 'postgres',
       database: 'mydb',
       entities: [User], // add any other entities you have
       synchronize: true,
