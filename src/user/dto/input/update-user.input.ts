@@ -7,13 +7,13 @@ export class UpdateUserInput {
   @IsNotEmpty()
   id: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsOptional()
   @IsNotEmpty()
   @IsNumber()
   age?: number;
 
-  @Field()
+  @Field({ nullable: true })
   @IsOptional()
   @IsNotEmpty()
   @IsBoolean()
