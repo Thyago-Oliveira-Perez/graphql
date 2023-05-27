@@ -4,6 +4,7 @@ import { UserService } from './services/user.service';
 import { GetUserArgs } from './dto/args/get-user.args';
 import { GetUsersArgs } from './dto/args/get-users.args';
 import { CreateUserInput } from './dto/input/create-user.input';
+import { UpdateUserInput } from './dto/input/update-user.input';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -24,5 +25,12 @@ export class UserResolver {
     @Args('createUserData') createUserData: CreateUserInput,
   ): User {
     return this.userService.createUser();
+  }
+
+  @Mutation(() => User)
+  async updateUser(
+    @Args('updateUserData') updateUserData: UpdateUserInput,
+  ): User {
+    return this.userService.updateUser();
   }
 }
