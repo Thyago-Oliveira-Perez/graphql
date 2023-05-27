@@ -18,7 +18,7 @@ export class UserResolver {
 
   @Query(() => [User], { name: 'users', nullable: 'items' })
   async getUsers(@Args() getUsersargs: GetUsersArgs): Promise<User[]> {
-    return this.userService.getUsers();
+    return this.userService.getUsers(getUsersargs);
   }
 
   @Mutation(() => User)

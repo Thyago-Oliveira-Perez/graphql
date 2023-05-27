@@ -4,6 +4,7 @@ import { CreateUserInput } from '../dto/input/create-user.input';
 import { v4 as uuid } from 'uuid';
 import { UpdateUserInput } from '../dto/input/update-user.input';
 import { GetUserArgs } from '../dto/args/get-user.args';
+import { GetUsersArgs } from '../dto/args/get-users.args';
 
 @Injectable()
 export class UserService {
@@ -32,7 +33,11 @@ export class UserService {
     return await this.users.find((user) => user.id === getUserArgs.id);
   }
 
-  public async getUsers(): Promise<User[]> {}
+  public async getUsers(getUsersArgs: GetUsersArgs): Promise<User[]> {
+    return await this.users.filter((user) =>
+      getUsersArgs.ids.includes(user.id),
+    );
+  }
 
   public async deleteUser(): Promise<User> {}
 }
