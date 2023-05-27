@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { UpdateUserInput } from '../dto/input/update-user.input';
 import { GetUserArgs } from '../dto/args/get-user.args';
 import { GetUsersArgs } from '../dto/args/get-users.args';
+import { DeleteUserInput } from '../dto/input/delete-user.input';
 
 @Injectable()
 export class UserService {
@@ -39,5 +40,14 @@ export class UserService {
     );
   }
 
-  public async deleteUser(): Promise<User> {}
+  public async deleteUser(deleteUsersInput: DeleteUserInput): Promise<User> {
+    const userIndex = this.users.findIndex(
+      (user) => user.id === deleteUsersInput.id,
+    );
+    const user = this.users[userIndex];
+
+    this.users.splice(userIndex, 1);
+
+    return user;
+  }
 }

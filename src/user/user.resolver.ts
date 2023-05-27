@@ -39,6 +39,6 @@ export class UserResolver {
   async deleteUser(
     @Args('deleteUserData') deleteUserData: DeleteUserInput,
   ): Promise<User> {
-    return this.userService.deleteUser();
+    return this.userService.deleteUser(deleteUserData);
   }
 }
