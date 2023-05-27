@@ -13,7 +13,7 @@ export class UserResolver {
 
   @Query(() => User, { name: 'user', nullable: true })
   async getUser(@Args() getUserArgs: GetUserArgs): Promise<User> {
-    return this.userService.getUserById();
+    return this.userService.getUserById(getUserArgs);
   }
 
   @Query(() => [User], { name: 'users', nullable: 'items' })
