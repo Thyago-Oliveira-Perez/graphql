@@ -5,6 +5,7 @@ import { GetUserArgs } from './dto/args/get-user.args';
 import { GetUsersArgs } from './dto/args/get-users.args';
 import { CreateUserInput } from './dto/input/create-user.input';
 import { UpdateUserInput } from './dto/input/update-user.input';
+import { DeleteUserInput } from './dto/input/delete-user.input';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -23,14 +24,21 @@ export class UserResolver {
   @Mutation(() => User)
   async createUser(
     @Args('createUserData') createUserData: CreateUserInput,
-  ): User {
+  ): Promise<User> {
     return this.userService.createUser();
   }
 
   @Mutation(() => User)
   async updateUser(
     @Args('updateUserData') updateUserData: UpdateUserInput,
-  ): User {
+  ): Promise<User> {
     return this.userService.updateUser();
+  }
+
+  @Mutation(() => User)
+  async deleteUser(
+    @Args('deleteUserData') deleteUserData: DeleteUserInput,
+  ): Promise<User> {
+    return this.userService.deleteUser();
   }
 }
